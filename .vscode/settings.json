@@ -38,4 +38,11 @@
     "chat.implicitContext.suggestedContext": false,
     "chat.sendElementsToChat.enabled": false,
     "chat.useCloudButtonV2": false,
+    "python-envs.pythonProjects": [
+        {
+            "path": "ElBarto.py",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
+        }
+    ],
 }
