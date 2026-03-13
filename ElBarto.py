@@ -1,1 +1,30 @@
-answer1 = input
+print ("")
+print ("")
+answer1 = input ("what is your name?   ")
+print ("")
+print (f"Hey {name} Im gonna make a story  ")
+input ("")
+print ("")
+answer1 = input ("Wait do you wanna make story??  ")
+if answer1 == "yes" or answer1 == "yeah" or answer1 == "sure" or answer1 == "Yes" or answer1 == "Yeah" or answer1 == "bet" or answer1 == "ye" or answer1 == ("Bet") or answer1 == ("Ye") or answer1 == ("sure") or answer1 == ("Sure") or answer1 == ("Yup") or answer1 == ("yup") or answer1 == (yeha) or answer1 == ("Heck yeah"):
+    print ("Ok sick")
+    adjective = input ("give me an adjective  ")
+    print ("")
+    location = input ("thanks now give me a location  ")
+    print ("")
+    Thing = input ("ok now give me a person or animal  ")
+    print ("")
+    print (f"there once was a {Thing}")
+    input ("")
+    print (f"this {Thing} was very {adjective}")
+    input ("")
+    print (f"and because they were {adjective} they got invited to come to this place called {location}")
+    input ("")
+    print ("")
+    print (f"{location} was also very {adjective} so it matched perfectly with {Thing}")
+    input ("")
+    print (f"{Thing} stayed at {location} for a long time and had fun")
+
+
+else:
+    print ("Whatever I didn't wanna make one anyway")
