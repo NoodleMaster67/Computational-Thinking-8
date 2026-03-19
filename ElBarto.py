@@ -1,12 +1,17 @@
 print ("")
 print ("")
-answer1 = input ("what is your name?   ")
+name = input ("what is your name?   ")
+if name == "Alex" or name == "alex" or name == "odin" or name == "Odin":
+    print ("")
+    print ("")
+    print ("I hate you")
+input ()
 print ("")
 print (f"Hey {name} Im gonna make a story  ")
 input ("")
 print ("")
 answer1 = input ("Wait do you wanna make story??  ")
-if answer1 == "yes" or answer1 == "yeah" or answer1 == "sure" or answer1 == "Yes" or answer1 == "Yeah" or answer1 == "bet" or answer1 == "ye" or answer1 == ("Bet") or answer1 == ("Ye") or answer1 == ("sure") or answer1 == ("Sure") or answer1 == ("Yup") or answer1 == ("yup") or answer1 == (yeha) or answer1 == ("Heck yeah"):
+if answer1 == "yes" or answer1 == "yeah" or answer1 == "sure" or answer1 == "Yes" or answer1 == "Yeah" or answer1 == "bet" or answer1 == "ye" or answer1 == ("Bet") or answer1 == ("Ye") or answer1 == ("sure") or answer1 == ("Sure") or answer1 == ("Yup") or answer1 == ("yup") or answer1 == ("ye") or answer1 == ("Heck yeah"):
     print ("Ok sick")
     adjective = input ("give me an adjective  ")
     print ("")
