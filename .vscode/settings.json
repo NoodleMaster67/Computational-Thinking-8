@@ -40,7 +40,7 @@
     "chat.useCloudButtonV2": false,
     "python-envs.pythonProjects": [
         {
-            "path": "ElBarto.py",
+            "path": "Conversation.py",
             "envManager": "ms-python.python:venv",
             "packageManager": "ms-python.python:pip"
         }

@@ -1,8 +1,10 @@
 team_points = 0
 money_points = 20
 chem_points = 5
+bad_spell = 0
 import sys
 import random
+mvp = None
 full_names = {
     "Steph": "Stephen Curry",
     "Cade": "Cade Cunningham",
@@ -51,12 +53,28 @@ print("If your good enough you will play against the 2017 playoff line up if you
 team = input("Enter team name: ")
 if team == ("Jayhawks"):
     money_points += 10000
-print ("Choose a Difficulty | easy 25$| Normal 20$| Hard 15$|")
+print ("Choose a Difficulty |Creative (your choice)| easy 25$| Normal 20$| Hard 15$|")
 difficulty = input("==").strip().capitalize()
 if difficulty == ("Easy"):
     money_points += 5
 if difficulty == ("Hard"):
     money_points -= 5
+if difficulty == ("Creative"):
+    money_points -= 20
+    money_points = int(input("Enter custom money amount: "))
+print ("")
+print ("Choose Gamemode:")
+print ("Arcade")
+print ("Go for the most wins no playoffs and no 82 game cap")
+print ("=========================================")
+print ("Regular:")
+print ("Play through the 2017 playoffs with 82 game cap")
+print ("")
+mode = input ("Choose:")
+if mode == ("arcade") or mode == ("Arcade"):
+    Arcade = True
+else:
+    Arcade = False
 print("---------------------------------------------------------------------")
 print(f"Remeber you only have {money_points}$ to choose your starting five plus a coach")
 print("Also be carful who you choose because some players have hidden chemistry debuffs")
@@ -78,19 +96,20 @@ print("to choose type the players first name with no spaces after their name")
 print ("Make sure that you spell their name correctly")
 print("Press Enter to start draft")
 input ("")
+print("------------------------------------------------------------------------------------------------")
 if money_points <= 0:
     print("You ran out of Money!")
     sys.exit()
-print("------------------------------------------------------------------------------------------------")
 print(f"Money Left: {money_points}$")
 print("Your point guard |5$ Steph Curry |4$ Cade Cunningham or Gary paton |3$ Darius Garland |2$ Isaiah Collier |1$ Bronny james |")
 pg = input("== ").strip().capitalize()
 full_pg = full_names.get(pg, pg)
 if pg == ("Steph"):
     money_points -= 5
-    team_points += 9
+    team_points += 11
     if random.randint(1, 7) == 1:
         print ("Steph Had a meeting with Benjiman")
+        team_points += 5
 elif pg == ("Cade"):
     money_points -= 4
     team_points += 7
@@ -119,6 +138,7 @@ else:
     pg == ("Darius")
     money_points -= 3
     team_points += 7
+    bad_spell += 1
 print("")
 print("")
 if money_points <= 0:
@@ -126,20 +146,20 @@ if money_points <= 0:
     sys.exit()
 print("---------------------------------------------------------------------------------------------------------")
 print(f"Money Left: {money_points}$")
-print("choose shooting guard |5$ Kobe Bryant |4$ Ray allen |3$ Jordan poole |2$  Washed Tracy Mcgrady|1$ Ben simmons |---")
+print("choose shooting guard |5$ Ray Allen |4$ Kobe Bryant |3$ Jordan poole |2$  Washed Tracy Mcgrady|1$ Ben simmons |---")
 sg = input("==").strip().capitalize()
 full_sg = full_names.get(sg, sg)
-if sg == ("Kobe"):
+if sg == ("Ray"):
     money_points -= 5
     team_points += 10
+elif sg == ("Kobe"):
+    money_points -= 4
+    team_points += 8
     chem_points -= 1
     if random.randint(1, 15) == 1:
         print("Kobe Had a bad trip in colorado and got suspended 1/15 chance")
         team_points -= 15
         chem_points -= 1
-elif sg == ("Ray"):
-    money_points -= 4
-    team_points += 7
 elif sg == ("Jordan"):
     money_points -= 3
     team_points += 5
@@ -153,6 +173,13 @@ elif sg == ("Ben"):
 elif sg == ("Kevin mcroller"):
     team_points += 100
     chem_points += 100
+else:
+    print ("You spelled their name wrong!")
+    print ("You received Washed Tmac!")
+    money_points -= 2
+    team_points += 3
+    sg == ("Tracy")
+    bad_spell += 1
 print("")
 print("")
 if money_points <= 0:
@@ -167,7 +194,6 @@ full_sf = full_names.get(sf, sf)
 if sf == ("Larry"):
     money_points -= 5
     team_points += 10
-    chem_points -= 1
 elif sf == ("Kevin"):
     money_points -= 4
     team_points += 10
@@ -189,6 +215,13 @@ elif sf == ("Jeremy"):
     money_points -= 1
     team_points += 1
     chem_points -= 2
+else:
+    print ("You spelled their name wrong!")
+    print ("You received Draymond!")
+    money_points -= 2
+    team_points += 4
+    sf == ("Draymond")
+    bad_spell += 1
 print("")
 print("")
 if money_points <= 0:
@@ -204,7 +237,7 @@ pf = input("==").strip().capitalize()
 full_pf = full_names.get(pf, pf)
 if pf == ("Dirk"):
     money_points -= 5
-    team_points += 9
+    team_points += 13
 elif pf == ("Shawn"):
     money_points -= 4
     team_points += 7
@@ -218,6 +251,13 @@ elif pf == ("Spud"):
     money_points -= 1
     team_points += 1
     chem_points -= 2
+else:
+    print ("You spelled their name wrong!")
+    print ("You received Obi Topin!")
+    money_points -= 2
+    team_points += 3
+    bad_spell += 1
+    pf == ("Obi")
 print("")
 print("")
 if money_points <= 0:
@@ -248,6 +288,13 @@ elif c == ("Myles"):
 elif c == ("Al"):
     money_points -= 1
     team_points += 1
+else:
+    print ("You spelled their name wrong!")
+    print ("You received Myles Turner!")
+    money_points -= 2
+    team_points += 3
+    bad_spell += 1
+    c == ("Myles")
 print("")
 print("")
 print("-------------------------------------------------------------------------------------------------")
@@ -273,6 +320,11 @@ elif coach == ("Roy"):
 elif coach == ("Steve"):
     money_points -= 1
     team_points += 0
+else:
+    print ("you spelled their name wrong")
+    print ("You recieved a childs rec league coach!")
+    team_points -= 1
+    bad_spell += 1
 print("")
 print("")
 if money_points < 0:
@@ -300,6 +352,51 @@ games = 82
 win_pct = team_points / max_points
 wins = round(win_pct * games)
 losses = games - wins
+# ARCADE MODE 
+if Arcade == True:
+    print(f"PRESENTING THE 2017 {team}!")
+    print(f"MVP: {mvp}")
+    print(f"PG: {full_pg}")
+    print(f"SG: {full_sg}")
+    print(f"SF: {full_sf}")
+    print(f"PF: {full_pf}")
+    print(f"C: {full_c}")
+    print(f"Coach: {full_coach}")
+    print("Press Enter to continue")
+    input("")
+    if wins > 82:
+        losses = 1
+    print (f"{wins}-{losses}")
+    print (f"you won {wins} before you lost once")
+    sys.exit ()
+
+if bad_spell == 1:
+    print ("Your Player Didn't like how you couldn't spell their name!")
+    print ("-3 team points")
+    print ("Press enter to continue")
+    team_points -= 3
+if bad_spell == 2:
+    print ("Your Players Didn't like how you couldn't spell their name!")
+    print ("-5 team points")
+    print ("Press enter to continue")
+    team_points -= 5
+if bad_spell == 3:
+    print ("Your Players Didn't like how you couldn't spell their name!")
+    print ("-7 team points")
+    print ("Press enter to continue")
+    team_points -= 7
+if bad_spell == 4:
+    print ("Your Players Didn't like how you couldn't spell their name!")
+    print ("-10 team points")
+    print ("Press enter to continue")
+    team_points -= 10
+if bad_spell == 5:
+    print ("Your Whole Team Didn't like how you couldn't spell their name!")
+    print ("-15 team points")
+    print ("Press enter to continue")
+    team_points -= 15
+
+#REGULAR MODE
 if wins > 82:
     wins -= wins
     wins += 82
@@ -307,24 +404,9 @@ if wins > 82:
 print("---------------------------------------------------------------------------------------------------------")
 print(f"Team Points: {team_points}")
 print(f"Your Season Record: {wins}-{losses}")
-input("")
 print ("press enter to continue")
+input("")
 
-if wins > 60:
-    random.randint(1, 8)
-    if random == 1 or random == 2:
-        mvp = sg
-        team_points += 3
-    if random == 3 or random == 4:
-        mvp = sg
-    if random == 5:
-        mvp = sf
-    if random == 6:
-        mvp = pf
-    if random == 7 or random == 8:
-        mvp = ("Lebron James")
-if wins < 60
-    mvp == ("Lebron")
 
 def simulate_game(team_rating, opponent_rating):
     team_score = random.randint(90, 115)
@@ -352,10 +434,22 @@ def play_series(team_name, opponent_name, team_rating, opponent_rating):
         print("Series:", team_wins, "-", opponent_wins)
         game += 1
     return team_wins > opponent_wins
+if wins < 58:
+    print ("=========================================")
+    print ("Sorry your team didn't make the playoffs")
+    print(f"MVP: {mvp}")
+    print(f"PG: {full_pg}")
+    print(f"SG: {full_sg}")
+    print(f"SF: {full_sf}")
+    print(f"PF: {full_pf}")
+    print(f"C: {full_c}")
+    print(f"Coach: {full_coach}")
+    sys.exit()
 print("-----------------------------------------------------------------------------------------------------")
 print("YOU MADE THE WESTERN CONFERENCE PLAYOFFS")
 print("== Current Lineup ==")
 print(f"PRESENTING THE 2017 {team}!")
+print(f"MVP: {mvp}")
 print(f"PG: {full_pg}")
 print(f"SG: {full_sg}")
 print(f"SF: {full_sf}")
@@ -390,6 +484,7 @@ if play_series(team, "Cleveland Cavaliers", int(wins*0.8), 62):
 else:
     print("Lost in the NBA Finals")
     champion = False
+input ("")
 print("SEASON SUMMARY")
 print(f"Record: {wins}-{losses}")
 print(f"MVP: {mvp}")

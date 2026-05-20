@@ -5,6 +5,7 @@ if name == "Alex" or name == "alex" or name == "odin" or name == "Odin":
     print ("")
     print ("")
     print ("I hate you")
+    SystemExit
 input ()
 print ("")
 print (f"Hey {name} Im gonna make a story  ")
