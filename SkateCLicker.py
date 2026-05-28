@@ -2,7 +2,9 @@ from utils import *
 import time
 import turtle
 
-# ---------------- CORE ----------------
+# The goal of the game is to press space to do tricks and tricks rewared you money which then can be used to buy upgrades to add which multiplies your money and the higher the steeze you have the cooler trick you do so the goal is to get as much money as possible
+
+# var
 Steeze = 0
 Money = 0
 Durability = 100
@@ -18,7 +20,7 @@ unlocked_tricks = set()
 last_trick_time = 0
 TRICK_COOLDOWN = 0.8
 
-# ---------------- SETUP ----------------
+# trick sprties
 set_background("SkatePart")
 window.tracer(0)
 
@@ -33,7 +35,10 @@ around = create_sprite("360Board", 10, 10)
 for t in [jump, olie, kick, flip, around]:
     t.hideturtle()
 
-# ---------------- GAME ----------------
+for i in range(10):
+    pass
+
+#game
 def do_trick():
     global Steeze, Money, Durability, combo, last_trick_time
 
@@ -71,7 +76,7 @@ def do_trick():
     draw_text(m_trick, f"{name} +{reward}", 0, -220)
     draw_text(m_stats, f"Steeze {Steeze} Money {Money} Combo {combo}", 0, 260)
 
-# ---------------- SHOP ----------------
+# shop
 def buy_board():
     global Money, BoardLevel, multiplier, Durability
 
@@ -100,7 +105,7 @@ def repair():
         Money -= 100
         Durability = 100
 
-# ---------------- INPUT (SAFE VERSION) ----------------
+# do the trick
 def press_space():
     global holding_space
     holding_space = True
@@ -121,7 +126,7 @@ window.listen()
 # reset_bar()
 # draw_bar()
 
-# ---------------- LOOP ----------------
+# loop
 while True:
     time.sleep(0.01)
     # update_bar()
